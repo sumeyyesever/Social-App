@@ -1,10 +1,10 @@
-import { Bookmark, Chat, Event, Group, HelpOutline, PlayCircle, RssFeed, Work, School } from "@mui/icons-material"
+import { Bookmark, Chat, Event, Group, HelpOutline, PlayCircle, Work, Home, Person } from "@mui/icons-material"
 import styled from "styled-components"
 import {Users} from "./../dummyData";
-import CloseFriend from "./CloseFriend";
+import Friends from "./Friends";
 
 const Container = styled.div`
-  flex: 3;
+  flex: 3.5;
   height: calc(100vh - 50px);
   position: sticky;
   top: 50px;
@@ -30,6 +30,7 @@ const List = styled.ul`
    list-style: none;
    padding: 0;
    margin: 0;
+   
 `
 
 const ListItem = styled.li`
@@ -52,10 +53,15 @@ const Button = styled.button`
    border-radius: 10px;
    font-weight: 600;
    margin: 10px 0;
+   cursor: pointer;
 `
 
 const Hr = styled.hr`
-   margin-top: 15px;
+   margin: 15px 0;
+`
+
+const Title = styled.h4`
+   margin-bottom: 15px;
 `
 
 const FriendList = styled.ul`
@@ -73,9 +79,13 @@ export default function Sidebar() {
     <Wrapper>
         <List>
             <ListItem>
-                <RssFeed />
-                <ListText>Feed</ListText>
+                <Home />
+                <ListText>Home</ListText>
             </ListItem>
+            <ListItem>
+                <Person />
+                <ListText>Profile</ListText>
+            </ListItem> 
             <ListItem>
                 <Chat />
                 <ListText>Chats</ListText>
@@ -104,16 +114,14 @@ export default function Sidebar() {
                 <Event />
                 <ListText>Events</ListText>
             </ListItem>
-            <ListItem>
-                <School />
-                <ListText>Courses</ListText>
-            </ListItem>           
+                      
         </List>
         <Button>Show More</Button>
         <Hr></Hr>
         <FriendList>
+        <Title>Friends</Title>
            {Users.map((u)=>(
-            <CloseFriend key={u.id} user={u} />
+            <Friends key={u.id} friend={u} />
            ))}
         </FriendList>
     </Wrapper>

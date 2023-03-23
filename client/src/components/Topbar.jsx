@@ -5,7 +5,7 @@ import styled from "styled-components";
 const Container = styled.div`
   height: 50px;
   width: 100%;
-  background-color: #1877f2;
+  background-color:  #4d4dff;
   display: flex;
   align-items: center;
   position: sticky;
@@ -14,7 +14,7 @@ const Container = styled.div`
 `
 
 const Left = styled.div`
-  flex: 3;
+  flex: 3.5;
 `
 
 const Logo = styled.span`
@@ -25,11 +25,11 @@ const Logo = styled.span`
 `
 
 const Center = styled.div`
-   flex: 5;
+   flex: 6;
 `
 
 const SearchContainer = styled.div`
-   width: 100%;
+   width: 80%;
    height: 30px;
    background-color: white;
    border-radius: 15px;
@@ -47,21 +47,13 @@ const Input = styled.input`
 `
 
 const Right = styled.div`
-   flex: 4;
+   flex: 2.5;
    display: flex;
    align-items: center;
    justify-content: space-around;
 `
 
-const Links = styled.div`
-   color: white;
-   font-size: 15px;
-`
 
-const TopbarLink = styled.span`
-   margin-right: 10px;
-   cursor: pointer;
-`
 
 const Icons = styled.div`
   display: flex;
@@ -116,10 +108,6 @@ export default function Topbar() {
         </SearchContainer>
       </Center>
       <Right>
-      <Links>
-        <TopbarLink>Homepage</TopbarLink>
-        <TopbarLink>Timeline</TopbarLink>
-      </Links>
       <Icons>
       <Icon>
       <Person />

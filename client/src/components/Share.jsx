@@ -1,19 +1,19 @@
-import { EmojiEmotions, InsertPhoto, Label, LocationOn } from "@mui/icons-material"
+import { EmojiEmotionsOutlined, InsertPhotoOutlined, LabelOutlined, LocationOnOutlined } from "@mui/icons-material"
 import styled from "styled-components"
 
 
 const Container = styled.div`
    width: 100%;
-   height: 170px;
+   height: fit-content;
    border-radius: 10px;
-   margin: 10px;
+   margin: 10px 10px 0 10px;
    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
 
 `
 
 const Wrapper = styled.div`
-   padding: 10px;
+   padding: 10px 10px 0 10px;
 `
 
 const Top = styled.div`
@@ -30,19 +30,22 @@ const Image = styled.img`
   margin-right: 10px;
 `
 
-const Input = styled.input`
-  width: 80%;
-  height: 20px;
-  border: none;
-  font-size: 15px;
+const Input = styled.div`
+
+   width: 500px;
+  
 
   &:focus{
-    outline:none;
+    outline: none;
   }
+  &:empty:before{
+    content: attr(data-placeholder);
+  }
+
 `
 
 const Hr = styled.hr`
-   margin: 15px 15px;
+   margin: 25px 15px 0 15px;
 `
 
 const Bottom = styled.div`
@@ -54,20 +57,41 @@ const Bottom = styled.div`
 const Options = styled.div`
    display: flex;
    align-items: center;
+   justify-content: center;
    margin-top: 15px;
-   margin-left: 10px;
+   
+  
+
+ 
+`
+const OptionText = styled.span`
+   font-size: 13px;
+   font-weight: 300;
+   background-color: #525453;
+   color: white;
+   padding: 0 2px;
+   height: 18px;
+   border-radius: 3px;
+   visibility: hidden;
+   /*  -webkit-transition: visibility 0s, opacity 0.5s linear; 
+    transition: visibility 0s, opacity 0.5s linear; */
 `
 
 const Option = styled.div`
    display: flex;
+   flex-direction: column;
    align-items: center;
-   margin-right: 15px;
+   justify-content: center;
+   margin-right: 20px;
+   cursor: pointer;
+   
+
+   &:hover ${OptionText}{
+    visibility: visible;
+   }
 `
 
-const OptionText = styled.span`
-   font-size: 15px;
-   font-weight: 500;
-`
+
 
 const Button = styled.button`
    margin-right: 15px;
@@ -77,7 +101,8 @@ const Button = styled.button`
    font-size: 15px;
    font-weight: 500;
    color: white;
-   background-color: #1996bd;
+   background-color: #957cbf;
+   cursor: pointer;
 `
 
 export default function Share() {
@@ -87,26 +112,26 @@ export default function Share() {
             <Top>
 
                 <Image src="assets/person/1.jpeg"></Image>
-                <Input placeholder="What's Up?"></Input>
+                <Input contentEditable="true" data-placeholder="What's Up"></Input>
             </Top>
             <Hr></Hr>
             <Bottom>
                 <Options>
                     <Option>
-                        <InsertPhoto style={{color:"#158f34"}} />
-                        <OptionText>Photo or Video</OptionText>
+                        <InsertPhotoOutlined style={{color:"#957cbf"}} />
+                        <OptionText>Media</OptionText>
                     </Option>
                     <Option>
-                        <Label style={{color:"#14d9b8"}}/>
+                        <LabelOutlined style={{color:"#957cbf"}}/>
                         <OptionText>Tag</OptionText>
                     </Option>
                     <Option>
-                        <LocationOn style={{color:"#8714d9"}}/>
-                        <OptionText>Location</OptionText>
+                        <LocationOnOutlined style={{color:"#957cbf"}}/>
+                        <OptionText>Loc</OptionText>
                     </Option>
                     <Option>
-                        <EmojiEmotions style={{color:"#cf25a4"}}/>
-                        <OptionText>Feelz</OptionText>
+                        <EmojiEmotionsOutlined style={{color:"#957cbf"}}/>
+                        <OptionText>Feel</OptionText>
                     </Option>
                 </Options>
                 <Button>Share</Button>

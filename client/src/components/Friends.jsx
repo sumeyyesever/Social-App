@@ -19,6 +19,7 @@ const Image = styled.img`
   height: 100px;
   object-fit: cover;
   border-radius: 10px;
+  cursor: pointer;
 `
 
 const Name = styled.span`
