@@ -56,9 +56,7 @@ const Name = styled.h4`
   font-size: 26px;
 `
 
-const Desc = styled.span`
-  color: gray;
-`
+
 
 const RightBottom = styled.div`
    display: flex;

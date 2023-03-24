@@ -26,7 +26,7 @@ const Left = styled.div`
 
 const Logo = styled.h3`
    font-size: 60px;
-   color: #1775ee;
+   color: #4d4dff;
 `
 
 const Desc = styled.span`
@@ -72,7 +72,7 @@ const Button = styled.button`
   border: none;
   font-size: 20px;
   color: white;
-  background-color: #1775ee;
+  background-color: #4d4dff;
   cursor: pointer;
 `
 
@@ -84,7 +84,7 @@ const RegisterButton = styled.button`
    border-radius: 10px;
    border: none;
    font-size: 20px;
-   background-color: limegreen;
+   background-color: #2d9649;
    color: white;
    cursor: pointer;
 `

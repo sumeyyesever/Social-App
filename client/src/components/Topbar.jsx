@@ -1,4 +1,5 @@
 import { Chat, Notifications, Person, Search } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 
@@ -99,7 +100,9 @@ export default function Topbar() {
   return (
     <Container>
       <Left>
-        <Logo>Hello</Logo>
+      <Link className="link" to="/">
+      <Logo>Hello</Logo>
+      </Link>     
       </Left>
       <Center>
         <SearchContainer>
@@ -122,7 +125,10 @@ export default function Topbar() {
       <IconBadge>1</IconBadge>
       </Icon>
       </Icons>
+      <Link to="/profile/:id">
       <Image src="/assets/person/1.jpeg" ></Image>
+      </Link>
+      
       </Right>
     </Container>
   )

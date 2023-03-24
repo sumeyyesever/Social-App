@@ -111,7 +111,7 @@ export default function Share() {
         <Wrapper>
             <Top>
 
-                <Image src="assets/person/1.jpeg"></Image>
+                <Image src="/assets/person/1.jpeg"></Image>
                 <Input contentEditable="true" data-placeholder="What's Up"></Input>
             </Top>
             <Hr></Hr>

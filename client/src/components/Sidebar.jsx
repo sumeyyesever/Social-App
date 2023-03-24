@@ -1,4 +1,5 @@
 import { Bookmark, Chat, Event, Group, HelpOutline, PlayCircle, Work, Home, Person } from "@mui/icons-material"
+import { Link } from "react-router-dom";
 import styled from "styled-components"
 import {Users} from "./../dummyData";
 import Friends from "./Friends";
@@ -78,14 +79,19 @@ export default function Sidebar() {
     <Container>
     <Wrapper>
         <List>
+            
+            <Link className="link" to="/" >
             <ListItem>
-                <Home />
+            <Home />
                 <ListText>Home</ListText>
             </ListItem>
+            </Link>
+             <Link className="link" to="/profile/:id">
             <ListItem>
                 <Person />
                 <ListText>Profile</ListText>
             </ListItem> 
+            </Link> 
             <ListItem>
                 <Chat />
                 <ListText>Chats</ListText>

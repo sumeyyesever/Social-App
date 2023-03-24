@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import {Users} from "./../dummyData";
 import Online from "./Online";
-import Friends from "./Friends";
+
 
 
 const Container = styled.div`
