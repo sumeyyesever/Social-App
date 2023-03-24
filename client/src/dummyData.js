@@ -142,3 +142,25 @@ export const Users = [
       comment: 55,
     },
   ];
+
+  export const PostComments = [
+    {
+      id:1,
+      desc:"cute^^",
+      photo:"assets/person/2.jpeg",
+      username:"Kim Jongin"
+    },
+    {
+      id:2,
+      desc:"깨고 부딪쳐야 해 우릴 볼 수 있도록",
+      photo:"assets/person/4.jpeg",
+      username:"Park Chanyeol"
+    },
+    {
+      id:3,
+      desc:"?",
+      photo:"assets/person/3.jpeg",
+      username:"Do Kyungsoo"
+    },
+
+  ];

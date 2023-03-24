@@ -68,10 +68,10 @@ const ProfileRightbar = () =>{
       </InfoItem>
       
     </Info>
-    <Title>User Friends</Title>
+    <Title>Online Friends</Title>
     {Users.map((u)=>(
-      <Friends key={u.id} friend={u}/>
-    ))}
+          <Online key={u.id} user={u} />
+        ))}
     </>
     
   )

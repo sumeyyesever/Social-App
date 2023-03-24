@@ -79,7 +79,6 @@ export default function Profile() {
                 </Cover>
                 <Info>
                     <Name>Byun Baekhyun</Name>
-                    <Desc>Helloooo</Desc>
                 </Info>
             </RightTop>
             <RightBottom>

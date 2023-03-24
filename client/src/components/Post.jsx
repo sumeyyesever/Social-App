@@ -1,7 +1,9 @@
-import { MoreVert } from '@mui/icons-material'
+import { ChatBubbleOutline, Favorite, FavoriteBorder, MoreVert } from '@mui/icons-material'
 import { useState } from 'react';
 import styled from 'styled-components'
 import {Users} from "./../dummyData";
+import Comments from './Comments';
+
 
 const Container = styled.div`
    width: 100%;
@@ -65,33 +67,17 @@ const PostImage = styled.img`
 const Bottom = styled.div`
    display: flex;
    align-items: center;
-   justify-content: space-between;
    margin-top: 20px;
+   
 `
 
-const BottomLeft = styled.div`
-   display: flex;
-   align-items: center;
 
-`
-
-const LikeIcon = styled.img`
-   width: 25px;
-   height: 25px;
-   margin-right: 8px;
-   cursor: pointer;
-`
-
-const LikeCounter = styled.span`
-  font-weight: 500;
-`
-
-const BottomRight = styled.div``
-
-const Comment = styled.span`
+const Interaction = styled.span`
    font-weight: 500;
-   border-bottom: 1px dashed;
-   cursor: pointer;
+   font-size: 13px;
+   margin-left: 5px;
+   margin-right: 10px;
+   
 `
 
 
@@ -99,6 +85,7 @@ export default function Post({post}) {
 
    const [like, setLike] = useState(post.like);
    const [isLiked, setIsLiked] = useState(false);
+   const [openComments, setOpenComments] = useState(false);
 
    const handleLike = ()=>{
       setLike(isLiked ? like-1 : like+1);
@@ -124,16 +111,14 @@ export default function Post({post}) {
                 <PostImage src={post.photo}></PostImage>
             </Center>
             <Bottom>
-                <BottomLeft>
-                    <LikeIcon src='/assets/heart.png' onClick={handleLike}></LikeIcon>
-                    <LikeIcon src='/assets/like.png' onClick={handleLike}></LikeIcon>
-                    <LikeCounter>{like} likes</LikeCounter>
-                </BottomLeft>
-                <BottomRight>
-                    <Comment>{post.comment} comments</Comment>
-                </BottomRight>
+                {isLiked ?  <Favorite onClick={handleLike} style={{cursor: "pointer", color: "red"}}/>
+                : <FavoriteBorder onClick={handleLike} style={{cursor: "pointer"}}/>}
+                    <Interaction>{like}</Interaction>
+                    <ChatBubbleOutline style={{cursor: "pointer"}} onClick={()=>setOpenComments(!openComments)}/>
+                    <Interaction>{post.comment} </Interaction> 
             </Bottom>
-        </Wrapper>
+            {openComments && <Comments/>}
+            </Wrapper>
     </Container>
   )
 }
