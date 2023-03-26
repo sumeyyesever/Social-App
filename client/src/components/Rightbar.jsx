@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { mobile } from "../responsive";
 import {Users} from "./../dummyData";
 import Online from "./Online";
 
@@ -7,6 +8,7 @@ import Online from "./Online";
 const Container = styled.div`
    flex: 3;
    margin: 10px 20px;
+   ${mobile({display:"none"})}
 
 `
 

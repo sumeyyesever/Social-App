@@ -1,8 +1,10 @@
+
 import styled from 'styled-components'
 import Feed from '../components/Feed'
 import Rightbar from '../components/Rightbar'
 import Sidebar from '../components/Sidebar'
 import Topbar from '../components/Topbar'
+import { mobile } from '../responsive'
 
 const Container = styled.div`
    display: flex;
@@ -12,19 +14,23 @@ const Right = styled.div`
   flex: 9;
 `
 
-const RightTop = styled.div``
+const RightTop = styled.div`
+ 
+`
 
 const Cover = styled.div`
     height: 320px;
     position: relative;
     margin-bottom: 20px;
+    ${mobile({marginBottom:"0"})}
     
 `
 
 const CoverImage = styled.img`
-    height: 100%;
+    max-height: 100%;
     object-fit: cover;
     width: 100%;
+   
 `
 
 const ProfileImage = styled.img`
@@ -38,6 +44,7 @@ const ProfileImage = styled.img`
    left: 0;
    right: 0;
    top: 220px;
+   ${mobile({top:"150px"})}
 
 `
 
@@ -48,6 +55,7 @@ flex-direction: column;
    justify-content: center;
    height: 90px;
    margin-top: 40px;
+   ${mobile({height:"50px", marginTop:"15px"})}
    
    
 `

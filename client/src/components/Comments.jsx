@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { mobile } from "../responsive";
 import {PostComments} from "./../dummyData";
 
 const Container = styled.div`
@@ -31,6 +32,7 @@ const Input = styled.div`
   &:focus{
     outline: none;
   }
+  ${mobile({width:"370px"})}
    
 `
 

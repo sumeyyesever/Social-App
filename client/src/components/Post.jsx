@@ -1,21 +1,24 @@
 import { ChatBubbleOutline, Favorite, FavoriteBorder, MoreVert } from '@mui/icons-material'
 import { useState } from 'react';
 import styled from 'styled-components'
+import { mobile } from '../responsive';
 import {Users} from "./../dummyData";
 import Comments from './Comments';
 
 
 const Container = styled.div`
-   width: 100%;
+   max-width: 100%;
    border-radius: 10px;
    margin: 30px 10px;
    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  
 
 `
 
 const Wrapper = styled.div`
   padding: 10px;
+  
 `
 
 const Top = styled.div`
@@ -28,6 +31,7 @@ const Top = styled.div`
 const TopLeft = styled.div`
    display: flex;
    align-items: center;
+   
 `
 
 const Image = styled.img`
@@ -35,6 +39,7 @@ const Image = styled.img`
   height: 32px;
   object-fit: cover;
   border-radius: 50%;
+  ${mobile({width:"45px", height:"45px"})}
 `
 
 const Username = styled.span`

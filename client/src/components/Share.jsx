@@ -1,19 +1,23 @@
 import { EmojiEmotionsOutlined, InsertPhotoOutlined, LabelOutlined, LocationOnOutlined } from "@mui/icons-material"
 import styled from "styled-components"
+import { mobile } from "../responsive"
 
 
 const Container = styled.div`
-   width: 100%;
+   max-width: 100%;
    height: fit-content;
    border-radius: 10px;
    margin: 10px 10px 0 10px;
    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
 
+
 `
 
 const Wrapper = styled.div`
    padding: 10px 10px 0 10px;
+   
+
 `
 
 const Top = styled.div`
@@ -28,11 +32,14 @@ const Image = styled.img`
   object-fit: cover;
   border-radius: 50%;
   margin-right: 10px;
+  ${mobile({display:"none"})}
+  
 `
 
 const Input = styled.div`
 
    width: 500px;
+  
   
 
   &:focus{

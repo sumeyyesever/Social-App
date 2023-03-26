@@ -1,6 +1,7 @@
 import { Bookmark, Chat, Event, Group, HelpOutline, PlayCircle, Work, Home, Person } from "@mui/icons-material"
 import { Link } from "react-router-dom";
 import styled from "styled-components"
+import { mobile } from "../responsive";
 import {Users} from "./../dummyData";
 import Friends from "./Friends";
 
@@ -10,6 +11,7 @@ const Container = styled.div`
   position: sticky;
   top: 50px;
   overflow-y: scroll;
+  ${mobile({display:"none"})}
 
   &::-webkit-scrollbar{
     width: 5px;

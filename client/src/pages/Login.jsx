@@ -1,12 +1,17 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
+import { mobile } from "../responsive"
 
 const Container = styled.div`
-   width: 100vw;
-   height: 100vh;
+  min-width: 100vw;
+   min-height: 100vh; 
    background-color: #f0f2f5;
+   background-size: cover;
    display: flex;
    align-items: center;
    justify-content: center;
+   
+
   
 `
 
@@ -14,6 +19,7 @@ const Wrapper = styled.div`
    width: 70%;
    height: 70%;
    display: flex;
+   ${mobile({flexDirection:"column"})}
 `
 
 const Left = styled.div`
@@ -22,6 +28,8 @@ const Left = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  ${mobile({alignItems:"flex-start"})}
+ 
 `
 
 const Logo = styled.h3`
@@ -31,6 +39,7 @@ const Logo = styled.h3`
 
 const Desc = styled.span`
   font-size: 25px;
+  
 `
 
 const Right = styled.div`
@@ -39,6 +48,7 @@ const Right = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+ 
 `
 
 const Box = styled.div`
@@ -50,6 +60,7 @@ const Box = styled.div`
    align-items: center;
    justify-content: space-between;
    padding: 20px;
+   ${mobile({width:"250px", marginTop:"15px"})}
 `
 
 const Input = styled.input`
@@ -59,6 +70,7 @@ const Input = styled.input`
   border-radius: 10px;
   border: 1px solid gray;
   padding-left: 5px;
+  ${mobile({width:"250px"})}
 
   &:focus{
     outline: none;
@@ -74,6 +86,7 @@ const Button = styled.button`
   color: white;
   background-color: #4d4dff;
   cursor: pointer;
+  ${mobile({width:"250px"})}
 `
 
 const Forgot = styled.span``
@@ -87,6 +100,7 @@ const RegisterButton = styled.button`
    background-color: #2d9649;
    color: white;
    cursor: pointer;
+   ${mobile({width:"250px"})}
 `
 
 export default function Login() {
@@ -103,7 +117,10 @@ export default function Login() {
                     <Input placeholder="Password" type={"password"}></Input>
                     <Button>Log In</Button>
                     <Forgot>Forgot Password?</Forgot>
+                    <Link to="/register">
                     <RegisterButton>Create a New Account</RegisterButton>
+                    </Link>
+                    
                 </Box>
             </Right>
         </Wrapper>

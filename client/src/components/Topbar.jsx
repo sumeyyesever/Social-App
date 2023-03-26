@@ -1,17 +1,21 @@
 import { Chat, Notifications, Person, Search } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { mobile } from "../responsive";
 
 
 const Container = styled.div`
   height: 50px;
-  width: 100%;
+  min-width: 550px;
   background-color:  #4d4dff;
   display: flex;
   align-items: center;
+  justify-content: center;
   position: sticky;
   top: 0;
   z-index: 1;
+  
+
 `
 
 const Left = styled.div`
@@ -27,31 +31,37 @@ const Logo = styled.span`
 
 const Center = styled.div`
    flex: 6;
+   @media only screen and (max-width: 420px){
+    display: none;
+   }
+  
 `
 
 const SearchContainer = styled.div`
-   width: 80%;
-   height: 30px;
+   max-width: 80%;
+   min-height: 30px;
    background-color: white;
    border-radius: 15px;
    display: flex;
    align-items: center;
+ 
 `
 
 const Input = styled.input`
-   width: 70%;
+   max-width: 70%;
    margin-left: 8px;
    border: none;
    &:focus{
     outline: none;
    }
+   
 `
 
 const Right = styled.div`
    flex: 2.5;
    display: flex;
    align-items: center;
-   justify-content: space-around;
+   justify-content: center;
 `
 
 
@@ -59,6 +69,8 @@ const Right = styled.div`
 const Icons = styled.div`
   display: flex;
   color: white;
+  margin-right: 10px;
+  
   
 `
 
