@@ -32,7 +32,7 @@ const Input = styled.div`
   &:focus{
     outline: none;
   }
-  ${mobile({width:"370px"})}
+  /* ${mobile({width:"370px"})} */
    
 `
 

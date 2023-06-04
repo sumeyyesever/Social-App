@@ -2,7 +2,7 @@ import styled from "styled-components"
 import Post from "./Post"
 import Share from "./Share"
 import {Posts} from "./../dummyData";
-import { mobile } from "../responsive";
+
 
 
 const Container = styled.div`

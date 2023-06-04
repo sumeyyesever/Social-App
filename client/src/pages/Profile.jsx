@@ -15,21 +15,24 @@ const Right = styled.div`
 `
 
 const RightTop = styled.div`
- 
+   width: 100%;
 `
 
 const Cover = styled.div`
     height: 320px;
+    min-width: 600px;
     position: relative;
     margin-bottom: 20px;
-    ${mobile({marginBottom:"0"})}
+/*     ${mobile({marginBottom:"0"})} */
     
 `
 
 const CoverImage = styled.img`
-    max-height: 100%;
-    object-fit: cover;
+    height: 300px;
     width: 100%;
+    object-fit: cover;
+    
+   
    
 `
 
@@ -44,7 +47,7 @@ const ProfileImage = styled.img`
    left: 0;
    right: 0;
    top: 220px;
-   ${mobile({top:"150px"})}
+/*    ${mobile({top:"150px"})} */
 
 `
 
@@ -55,7 +58,7 @@ flex-direction: column;
    justify-content: center;
    height: 90px;
    margin-top: 40px;
-   ${mobile({height:"50px", marginTop:"15px"})}
+   /* ${mobile({height:"50px", marginTop:"15px"})} */
    
    
 `
@@ -81,10 +84,10 @@ export default function Profile() {
             <RightTop>
                 <Cover>
                     <CoverImage src='/assets/cover.jpeg'></CoverImage>
-                    <ProfileImage src='/assets/person/1.jpeg'></ProfileImage>
+                    <ProfileImage src='/assets/person/1.jpg'></ProfileImage>
                 </Cover>
                 <Info>
-                    <Name>Byun Baekhyun</Name>
+                    <Name>Sana San</Name>
                 </Info>
             </RightTop>
             <RightBottom>

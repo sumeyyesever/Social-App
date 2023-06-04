@@ -1,12 +1,12 @@
 import { Chat, Notifications, Person, Search } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { mobile } from "../responsive";
+
 
 
 const Container = styled.div`
-  height: 50px;
-  min-width: 550px;
+   width: 100%;
+  padding: 5px 0;
   background-color:  #4d4dff;
   display: flex;
   align-items: center;
@@ -15,8 +15,8 @@ const Container = styled.div`
   top: 0;
   z-index: 1;
   
-
 `
+
 
 const Left = styled.div`
   flex: 3.5;
@@ -111,6 +111,7 @@ const Image = styled.img`
 export default function Topbar() {
   return (
     <Container>
+   
       <Left>
       <Link className="link" to="/">
       <Logo>Hello</Logo>
@@ -138,10 +139,11 @@ export default function Topbar() {
       </Icon>
       </Icons>
       <Link to="/profile/:id">
-      <Image src="/assets/person/1.jpeg" ></Image>
+      <Image src="/assets/person/1.jpg" ></Image>
       </Link>
       
       </Right>
+   
     </Container>
   )
 }

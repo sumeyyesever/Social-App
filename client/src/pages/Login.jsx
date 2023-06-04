@@ -19,7 +19,7 @@ const Wrapper = styled.div`
    width: 70%;
    height: 70%;
    display: flex;
-   ${mobile({flexDirection:"column"})}
+ /*   ${mobile({flexDirection:"column"})} */
 `
 
 const Left = styled.div`
@@ -28,7 +28,7 @@ const Left = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  ${mobile({alignItems:"flex-start"})}
+/*   ${mobile({alignItems:"flex-start"})} */
  
 `
 
@@ -60,7 +60,7 @@ const Box = styled.div`
    align-items: center;
    justify-content: space-between;
    padding: 20px;
-   ${mobile({width:"250px", marginTop:"15px"})}
+   /* ${mobile({width:"250px", marginTop:"15px"})} */
 `
 
 const Input = styled.input`
@@ -70,7 +70,7 @@ const Input = styled.input`
   border-radius: 10px;
   border: 1px solid gray;
   padding-left: 5px;
-  ${mobile({width:"250px"})}
+/*   ${mobile({width:"250px"})} */
 
   &:focus{
     outline: none;
@@ -86,7 +86,7 @@ const Button = styled.button`
   color: white;
   background-color: #4d4dff;
   cursor: pointer;
-  ${mobile({width:"250px"})}
+/*   ${mobile({width:"250px"})} */
 `
 
 const Forgot = styled.span``
@@ -100,7 +100,7 @@ const RegisterButton = styled.button`
    background-color: #2d9649;
    color: white;
    cursor: pointer;
-   ${mobile({width:"250px"})}
+/*    ${mobile({width:"250px"})} */
 `
 
 export default function Login() {

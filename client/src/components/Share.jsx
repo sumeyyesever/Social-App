@@ -32,7 +32,7 @@ const Image = styled.img`
   object-fit: cover;
   border-radius: 50%;
   margin-right: 10px;
-  ${mobile({display:"none"})}
+/*   ${mobile({display:"none"})} */
   
 `
 
@@ -118,7 +118,7 @@ export default function Share() {
         <Wrapper>
             <Top>
 
-                <Image src="/assets/person/1.jpeg"></Image>
+                <Image src="/assets/person/1.jpg"></Image>
                 <Input contentEditable="true" data-placeholder="What's Up"></Input>
             </Top>
             <Hr></Hr>

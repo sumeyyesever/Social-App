@@ -8,7 +8,7 @@ import Online from "./Online";
 const Container = styled.div`
    flex: 3;
    margin: 10px 20px;
-   ${mobile({display:"none"})}
+   ${mobile({display:"none"})} 
 
 `
 
@@ -61,12 +61,12 @@ const ProfileRightbar = () =>{
         <InfoValue>6 May 1992</InfoValue>
       </InfoItem>
       <InfoItem>
-        <InfoKey>Group:</InfoKey>
-        <InfoValue>EXO</InfoValue>
+        <InfoKey>Hobbies:</InfoKey>
+        <InfoValue>Reading</InfoValue>
       </InfoItem>
       <InfoItem>
-        <InfoKey>Position:</InfoKey>
-        <InfoValue>Main Vocal</InfoValue>
+        <InfoKey>Country:</InfoKey>
+        <InfoValue>China</InfoValue>
       </InfoItem>
       
     </Info>

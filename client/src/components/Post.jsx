@@ -39,7 +39,7 @@ const Image = styled.img`
   height: 32px;
   object-fit: cover;
   border-radius: 50%;
-  ${mobile({width:"45px", height:"45px"})}
+  /* ${mobile({width:"45px", height:"45px"})} */
 `
 
 const Username = styled.span`
