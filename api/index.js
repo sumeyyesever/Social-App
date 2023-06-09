@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
 const userRoute = require("./routes/users");
+const authRoute = require("./routes/auth");
 
 const app = express();
 dotenv.config();
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(helmet());
 
 app.use("/api/users", userRoute);
+app.use("/api/auth", authRoute);
 
 app.listen(3300, ()=>{
     console.log("listening");
