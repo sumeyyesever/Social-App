@@ -39,6 +39,18 @@ const UserSchema = new mongoose.Schema({
         type:Boolean,
         default: false,
     },
+    birthday:{
+        type: String,
+        default: ""
+    },
+    hobbies:{
+        type: Array,
+        default: [],
+    },
+    country:{
+        type:String,
+        max:20,
+    }
 },
 {timestamps: true}
 );
