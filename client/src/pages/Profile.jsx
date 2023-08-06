@@ -5,6 +5,10 @@ import Rightbar from '../components/Rightbar'
 import Sidebar from '../components/Sidebar'
 import Topbar from '../components/Topbar'
 import { mobile } from '../responsive'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import axios from 'axios'
+import { useParams } from 'react-router-dom'
 
 const Container = styled.div`
    display: flex;
@@ -76,6 +80,18 @@ const RightBottom = styled.div`
 
 
 export default function Profile() {
+  const [user, setUser] = useState({});
+  const username = useParams().username;
+  
+
+  useEffect(()=>{
+    const fetchUser = async ()=>{
+      const res = await axios.get(`/users?username=${username}`);
+      setUser(res.data);
+    }
+    fetchUser();
+  }, [username]);
+ 
   return ( <>
     <Topbar />
     <Container>
@@ -83,16 +99,16 @@ export default function Profile() {
         <Right>
             <RightTop>
                 <Cover>
-                    <CoverImage src='/assets/cover.jpeg'></CoverImage>
-                    <ProfileImage src='/assets/person/1.jpg'></ProfileImage>
+                    <CoverImage src={user.coverPicture || "/assets/no-cover.jpg"}></CoverImage>
+                    <ProfileImage src={user.profilePicture || "/assets/person/no-avatar.jpg"}></ProfileImage>
                 </Cover>
                 <Info>
-                    <Name>Sana San</Name>
+                    <Name>{user.username}</Name>
                 </Info>
             </RightTop>
             <RightBottom>
-                <Feed />
-                <Rightbar profile/>
+                <Feed username = {username} />
+                <Rightbar user={user}/>
             </RightBottom>
         </Right>
     </Container>

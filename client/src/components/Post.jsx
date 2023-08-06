@@ -4,6 +4,10 @@ import styled from 'styled-components'
 import { mobile } from '../responsive';
 import {Users} from "./../dummyData";
 import Comments from './Comments';
+import { useEffect } from 'react';
+import axios from 'axios';
+import {format} from "timeago.js";
+import {Link} from "react-router-dom";
 
 
 const Container = styled.div`
@@ -88,9 +92,10 @@ const Interaction = styled.span`
 
 export default function Post({post}) {
 
-   const [like, setLike] = useState(post.like);
+   const [like, setLike] = useState(post.likes.length);
    const [isLiked, setIsLiked] = useState(false);
    const [openComments, setOpenComments] = useState(false);
+   const [user, setUser] = useState({});
 
    const handleLike = ()=>{
       setLike(isLiked ? like-1 : like+1);
@@ -98,14 +103,25 @@ export default function Post({post}) {
 
    }
 
+   useEffect(()=>{
+      const fetchUser = async () =>{
+         const res = await axios.get(`/users?userId=${post.userId}`);
+         setUser(res.data); 
+      }
+      fetchUser();
+   },[post.userId]);
+
   return (
     <Container>
         <Wrapper>
             <Top>
                 <TopLeft>
-                    <Image src={Users.filter((u)=>u.id===post.userId)[0].profilePicture}></Image>
-                    <Username>{Users.filter((u)=>u.id===post.userId)[0].username}</Username>
-                    <Date>{post.date}</Date>
+                <Link to={`profile/${user.username}`} >
+                <Image src={user.profilePicture || "/assets/person/no-avatar.jpg"}></Image>
+                </Link>
+                    
+                    <Username>{user.username}</Username>
+                    <Date>{format(post.createdAt)}</Date>
                 </TopLeft>
                 <TopRight>
                     <MoreVert />
@@ -113,7 +129,7 @@ export default function Post({post}) {
             </Top>
             <Center>
                 <Text>{post.desc}</Text>
-                <PostImage src={post.photo}></PostImage>
+                <PostImage src={post.img}></PostImage>
             </Center>
             <Bottom>
                 {isLiked ?  <Favorite onClick={handleLike} style={{cursor: "pointer", color: "red"}}/>

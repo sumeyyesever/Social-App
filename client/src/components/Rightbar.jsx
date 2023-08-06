@@ -51,22 +51,22 @@ const HomeRightbar = () =>{
   )
 }
 
-const ProfileRightbar = () =>{
+const ProfileRightbar = ({user}) =>{
   return(
     <>
 <Title>User Information</Title>
     <Info>
       <InfoItem>
         <InfoKey>Birthday:</InfoKey>
-        <InfoValue>6 May 1992</InfoValue>
+        <InfoValue>{user.birthday}</InfoValue>
       </InfoItem>
       <InfoItem>
         <InfoKey>Hobbies:</InfoKey>
-        <InfoValue>Reading</InfoValue>
+        <InfoValue>{user.hobbies}</InfoValue>
       </InfoItem>
       <InfoItem>
         <InfoKey>Country:</InfoKey>
-        <InfoValue>China</InfoValue>
+        <InfoValue>{user.country}</InfoValue>
       </InfoItem>
       
     </Info>
@@ -79,11 +79,11 @@ const ProfileRightbar = () =>{
   )
 }
 
-export default function Rightbar({profile}) {
+export default function Rightbar({user}) {
   return(
     <Container>
     <Wrapper>
-    {profile ? <ProfileRightbar /> : <HomeRightbar /> }
+    {user ? <ProfileRightbar user={user}/> : <HomeRightbar /> }
     </Wrapper>
  
     </Container>
