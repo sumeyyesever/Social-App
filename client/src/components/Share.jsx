@@ -1,6 +1,9 @@
 import { EmojiEmotionsOutlined, InsertPhotoOutlined, LabelOutlined, LocationOnOutlined } from "@mui/icons-material"
 import styled from "styled-components"
 import { mobile } from "../responsive"
+import { useContext, useRef, useState } from "react"
+import { Context } from "../context/Context"
+import axios from "axios"
 
 
 const Container = styled.div`
@@ -23,6 +26,7 @@ const Wrapper = styled.div`
 const Top = styled.div`
    display: flex;
    align-items: center;
+   width: 550px;
    
 `
 
@@ -38,7 +42,7 @@ const Image = styled.img`
 
 const Input = styled.div`
 
-   width: 500px;
+   width: 80%;
   
   
 
@@ -55,7 +59,7 @@ const Hr = styled.hr`
    margin: 25px 15px 0 15px;
 `
 
-const Bottom = styled.div`
+const Bottom = styled.form`
    display: flex;
    align-items: center;
    justify-content: space-between;
@@ -97,6 +101,20 @@ const Option = styled.div`
     visibility: visible;
    }
 `
+const MediaInput = styled.input`
+`
+const MediaOption = styled.label`
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   margin-right: 20px;
+   cursor: pointer;
+
+   &:hover ${OptionText}{
+    visibility: visible;
+   }
+`
 
 
 
@@ -113,21 +131,54 @@ const Button = styled.button`
 `
 
 export default function Share() {
+  const {user} = useContext(Context);
+  const description = document.getElementById("shareDesc");
+  const [file, setFile] = useState(null);
+
+ const upload = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await axios.post("/upload", formData);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+ 
+  const submitHandler = async (e)=>{
+    e.preventDefault();
+    const newPost = {
+      userId: user._id,
+      desc: description.innerHTML,
+    };
+    if(file){
+      newPost.img = await upload();
+    }
+    try {
+      await axios.post("/posts", newPost);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <Container>
         <Wrapper>
             <Top>
 
-                <Image src="/assets/person/1.jpg"></Image>
-                <Input contentEditable="true" data-placeholder="What's Up"></Input>
+                <Image src={user.profilePicture || "/assets/person/no-avatar.jpg"}></Image>
+                <Input id="shareDesc" contentEditable="true" data-placeholder={"What's Up " +user.username + "?"} ></Input>
             </Top>
             <Hr></Hr>
-            <Bottom>
+            <Bottom onSubmit={submitHandler}>
                 <Options>
-                    <Option>
+                    <MediaOption htmlFor="file">
                         <InsertPhotoOutlined style={{color:"#957cbf"}} />
                         <OptionText>Media</OptionText>
-                    </Option>
+                        <MediaInput style={{ display:"none"}} type="file" id="file" accept=".png,.jpg,.jpeg" onChange={(e)=>setFile(e.target.files[0])}></MediaInput>
+                    </MediaOption>
                     <Option>
                         <LabelOutlined style={{color:"#957cbf"}}/>
                         <OptionText>Tag</OptionText>
@@ -141,7 +192,7 @@ export default function Share() {
                         <OptionText>Feel</OptionText>
                     </Option>
                 </Options>
-                <Button>Share</Button>
+                <Button type="submit">Share</Button>
             </Bottom>
         </Wrapper>
     </Container>

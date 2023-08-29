@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { mobile } from "../responsive"
+import { useContext, useRef } from "react"
+import { loginCall } from "../apiCalls"
+import { Context } from "../context/Context"
 
 const Container = styled.div`
   min-width: 100vw;
@@ -55,12 +58,20 @@ const Box = styled.div`
    height: 300px;
    background-color: white;
    border-radius: 10px;
-   display: flex;
+  /*  display: flex;
    flex-direction: column;
    align-items: center;
-   justify-content: space-between;
-   padding: 20px;
+   justify-content: space-between; */
+    padding: 20px;
    /* ${mobile({width:"250px", marginTop:"15px"})} */
+`
+
+const Form = styled.form`
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: space-between;
+     gap: 20px;
 `
 
 const Input = styled.input`
@@ -89,7 +100,9 @@ const Button = styled.button`
 /*   ${mobile({width:"250px"})} */
 `
 
-const Forgot = styled.span``
+const Forgot = styled.span`
+   
+`
 
 const RegisterButton = styled.button`
    width: 300px;
@@ -104,6 +117,15 @@ const RegisterButton = styled.button`
 `
 
 export default function Login() {
+  const email = useRef();
+  const password = useRef();
+  const {dispatch} = useContext(Context);
+  const handleClick = (e) =>{
+    e.preventDefault();
+    loginCall(
+      {email:email.current.value, password:password.current.value}, dispatch
+    );
+  }
   return (
     <Container>
         <Wrapper>
@@ -113,14 +135,15 @@ export default function Login() {
             </Left>
             <Right>
                 <Box>
-                    <Input placeholder="E-mail" type={"email"}></Input>
-                    <Input placeholder="Password" type={"password"}></Input>
-                    <Button>Log In</Button>
+                    <Form onSubmit={handleClick}>
+                    <Input placeholder="E-mail" type={"email"} required={true} ref={email}></Input>
+                    <Input placeholder="Password" type={"password"} required={true} minLength={6} ref={password}></Input>
+                    <Button type="submit">Log In</Button>
                     <Forgot>Forgot Password?</Forgot>
                     <Link to="/register">
                     <RegisterButton>Create a New Account</RegisterButton>
                     </Link>
-                    
+                    </Form>
                 </Box>
             </Right>
         </Wrapper>

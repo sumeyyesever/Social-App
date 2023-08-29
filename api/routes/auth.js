@@ -37,10 +37,10 @@ router.post("/login", async (req,res)=>{
 
     try {
         //find the user from db
-        const user = await User.findOne({username: req.body.username});
+        const user = await User.findOne({email: req.body.email});
 
         if(!user){
-            console.log("wrong username");;
+            console.log("wrong email");;
         }
         
         //compare the passwords

@@ -5,6 +5,7 @@ import Online from "./Online";
 
 
 
+
 const Container = styled.div`
    flex: 3;
    margin: 10px 20px;
@@ -38,7 +39,8 @@ const InfoValue = styled.span`
 `
 
 
-const HomeRightbar = () =>{
+const HomeRightbar = ({user}) =>{
+ 
   return (
     <>
 <Title>Online Friends</Title>
@@ -70,20 +72,18 @@ const ProfileRightbar = ({user}) =>{
       </InfoItem>
       
     </Info>
-    <Title>Online Friends</Title>
-    {Users.map((u)=>(
-          <Online key={u.id} user={u} />
-        ))}
+
     </>
     
   )
 }
 
 export default function Rightbar({user}) {
+
   return(
     <Container>
     <Wrapper>
-    {user ? <ProfileRightbar user={user}/> : <HomeRightbar /> }
+    {user ? <ProfileRightbar user={user}/> : <HomeRightbar/> }
     </Wrapper>
  
     </Container>

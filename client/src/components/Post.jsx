@@ -1,13 +1,14 @@
 import { ChatBubbleOutline, Favorite, FavoriteBorder, MoreVert } from '@mui/icons-material'
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styled from 'styled-components'
 import { mobile } from '../responsive';
-import {Users} from "./../dummyData";
 import Comments from './Comments';
 import { useEffect } from 'react';
 import axios from 'axios';
-import {format} from "timeago.js";
+import { format } from 'timeago.js';
 import {Link} from "react-router-dom";
+import { Context } from "../context/Context";
+
 
 
 const Container = styled.div`
@@ -91,13 +92,28 @@ const Interaction = styled.span`
 
 
 export default function Post({post}) {
+   const {user:currentUser} = useContext(Context);
 
    const [like, setLike] = useState(post.likes.length);
    const [isLiked, setIsLiked] = useState(false);
    const [openComments, setOpenComments] = useState(false);
    const [user, setUser] = useState({});
+   const [image, setImage] = useState(false);
+
+   useEffect(()=>{
+      if(post.img) { setImage(true);}
+   },[post]);
+
+   useEffect(()=>{
+      setIsLiked(post.likes.includes(currentUser._id));
+   },[currentUser._id, post.likes]);
 
    const handleLike = ()=>{
+      try {
+         axios.put("/posts/"+post._id + "/like", {userId:currentUser._id});
+      } catch (error) {
+         
+      }
       setLike(isLiked ? like-1 : like+1);
       setIsLiked(!isLiked);
 
@@ -129,7 +145,7 @@ export default function Post({post}) {
             </Top>
             <Center>
                 <Text>{post.desc}</Text>
-                <PostImage src={post.img}></PostImage>
+                {image && <PostImage src={"/assets/post/" + post.img } ></PostImage> }
             </Center>
             <Bottom>
                 {isLiked ?  <Favorite onClick={handleLike} style={{cursor: "pointer", color: "red"}}/>

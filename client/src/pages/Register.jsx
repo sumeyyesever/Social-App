@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { mobile } from "../responsive"
+import { useRef } from "react"
+import axios from "axios"
+import {useNavigate} from "react-router-dom"
 
 const Container = styled.div`
    min-width: 100vw;
@@ -46,7 +49,7 @@ const Right = styled.div`
   align-items: center;
 `
 
-const Box = styled.div`
+const Box = styled.form`
    min-height: 400px;
    background-color: white;
    border-radius: 10px;
@@ -98,6 +101,33 @@ const LoginButton = styled.button`
 `
 
 export default function Register() {
+  const username = useRef();
+  const email = useRef();
+  const password = useRef();
+  const passwordAgain = useRef();
+  const navigate = useNavigate();
+
+  const handleClick = async (e)=>{
+    e.preventDefault();
+    if(passwordAgain.current.value !== password.current.value){
+      passwordAgain.current.setCustomValidity("Passwords don't match!");
+    }
+    else{
+      const user = {
+        username:username.current.value,
+        password: password.current.value,
+        email:email.current.value
+      }
+      try {
+        await axios.post("/auth/register", user);
+        navigate("/login");
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+  }
+
   return (
     <Container>
         <Wrapper>
@@ -106,12 +136,12 @@ export default function Register() {
                 <Desc>Connect with friends and the world</Desc>
             </Left>
             <Right>
-                <Box>
-                    <Input placeholder="E-mail" type={"email"}></Input>
-                    <Input placeholder="Username"></Input>
-                    <Input placeholder="Password" type={"password"}></Input>
-                    <Input placeholder="Password" type={"password"}></Input>
-                    <Button>Sign In</Button>
+                <Box onSubmit={handleClick}>
+                    <Input placeholder="E-mail" type={"email"} ref={email} required></Input>
+                    <Input placeholder="Username" ref={username} required></Input>
+                    <Input placeholder="Password" type={"password"} ref={password} required minLength={6}></Input>
+                    <Input placeholder="Password" type={"password"} ref={passwordAgain} required ></Input>
+                    <Button type="submit">Sign In</Button>
                     <Link to="/login">
                     <LoginButton>Log In To Account</LoginButton>
                     </Link>

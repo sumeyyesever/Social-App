@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 const Followings = styled.div`
@@ -29,10 +30,12 @@ const Name = styled.span`
 export default function Friends({friend}) {
   return (
       <Followings>
+      <Link to={"/profile/" + friend.username} style={{textDecoration:"none"}}>
     <Following>
       <Image src={friend.profilePicture} ></Image>
       <Name>{friend.username}</Name>
     </Following>
+    </Link>
     </Followings>
   )
 }

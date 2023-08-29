@@ -1,6 +1,8 @@
 import { Chat, Notifications, Person, Search } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Context } from "../context/Context";
+import { useContext } from "react";
 
 
 
@@ -109,7 +111,8 @@ const Image = styled.img`
 
 
 export default function Topbar() {
-  return (
+  const {user} = useContext(Context);
+    return (
     <Container>
    
       <Left>
@@ -138,8 +141,8 @@ export default function Topbar() {
       <IconBadge>1</IconBadge>
       </Icon>
       </Icons>
-      <Link to="/profile/:id">
-      <Image src="/assets/person/1.jpg" ></Image>
+      <Link to={`/profile/${user.username}`}>
+      <Image src={user.profilePicture || "/assets/person/no-avatar.jpg" }></Image>
       </Link>
       
       </Right>

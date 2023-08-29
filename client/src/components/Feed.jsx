@@ -1,10 +1,10 @@
 import styled from "styled-components"
 import Post from "./Post"
 import Share from "./Share"
-import {Posts} from "./../dummyData";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import { Context } from "../context/Context";
 
 const Container = styled.div`
     flex: 6;
@@ -12,16 +12,19 @@ const Container = styled.div`
 `
 
 export default function Feed({username}) {
+  const {user} = useContext(Context);
 
   const [posts, setPosts] = useState([]);
 
   useEffect(()=>{
        const fetchPosts = async () =>{
-        const res = username ? await axios.get("/posts/profile/" + username ) : await axios.get("/posts/timeline/6483147a4dee4cea94f40231");
-        setPosts(res.data);
+        const res = username ? await axios.get("/posts/profile/" + username ) : await axios.get("/posts/timeline/" + user._id);
+        setPosts(res.data.sort((p1,p2)=>{
+          return new Date(p2.createdAt) - new Date(p1.createdAt)
+        }));
        }
        fetchPosts();
-    },[username]
+    },[username, user._id]
    
   );
   return (

@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 
 
@@ -44,6 +45,7 @@ const Username = styled.span`
   `
 
 export default function Online({user}) {
+  
   return (
     <FriendList>
           <Friend>

@@ -4,6 +4,10 @@ import styled from "styled-components"
 import { mobile } from "../responsive";
 import {Users} from "./../dummyData";
 import Friends from "./Friends";
+import { useContext } from "react";
+import { Context } from "../context/Context";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Container = styled.div`
   flex: 3.5;
@@ -77,6 +81,19 @@ const FriendList = styled.ul`
 
 
 export default function Sidebar() {
+  const [friends, setFriends] = useState([]);
+  const {user} = useContext(Context);
+  useEffect(()=>{
+    const getFriends = async ()=>{
+      try {
+        const friendList = await axios.get("/users/friends/"+user._id);
+        setFriends(friendList.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getFriends();
+  }, [user._id]);
   return (
     <Container>
     <Wrapper>
@@ -128,7 +145,7 @@ export default function Sidebar() {
         <Hr></Hr>
         <FriendList>
         <Title>Friends</Title>
-           {Users.map((u)=>(
+           {friends.map((u)=>(
             <Friends key={u.id} friend={u} />
            ))}
         </FriendList>
