@@ -1,4 +1,4 @@
-import { EmojiEmotionsOutlined, InsertPhotoOutlined, LabelOutlined, LocationOnOutlined } from "@mui/icons-material"
+import { Cancel, EmojiEmotionsOutlined, InsertPhotoOutlined, LabelOutlined, LocationOnOutlined } from "@mui/icons-material"
 import styled from "styled-components"
 import { mobile } from "../responsive"
 import { useContext, useRef, useState } from "react"
@@ -78,7 +78,7 @@ const Options = styled.div`
 const OptionText = styled.span`
    font-size: 13px;
    font-weight: 300;
-   background-color: #525453;
+   background-color: gray;
    color: white;
    padding: 0 2px;
    height: 18px;
@@ -126,8 +126,18 @@ const Button = styled.button`
    font-size: 15px;
    font-weight: 500;
    color: white;
-   background-color: #957cbf;
+   background-color: #38a0cc;
    cursor: pointer;
+`
+
+const ImageContainer = styled.div`
+   padding: 10px 20px 10px 20px;
+   position: relative;
+`
+
+const ShareImage = styled.img`
+  width: 100%;
+  object-fit: cover;
 `
 
 export default function Share() {
@@ -168,27 +178,33 @@ export default function Share() {
         <Wrapper>
             <Top>
 
-                <Image src={user.profilePicture || "/assets/person/no-avatar.jpg"}></Image>
-                <Input id="shareDesc" contentEditable="true" data-placeholder={"What's Up " +user.username + "?"} ></Input>
+                <Image src={user.profilePicture || "/assets/person/no-avatar.jpg"}/>
+                <Input id="shareDesc" contentEditable="true" data-placeholder={"What's Up "+user.username+"?"}/>
             </Top>
-            <Hr></Hr>
+            <Hr/>
+            {file && (
+              <ImageContainer>
+                <ShareImage src={URL.createObjectURL(file)}/>
+                <Cancel onClick={()=>setFile(null)} style={{position:"absolute", right:"20px", opacity:"0.7", cursor:"pointer", color:"white"}}/>
+              </ImageContainer>
+            )}
             <Bottom onSubmit={submitHandler}>
                 <Options>
                     <MediaOption htmlFor="file">
-                        <InsertPhotoOutlined style={{color:"#957cbf"}} />
+                        <InsertPhotoOutlined style={{color:"#38a0cc"}} />
                         <OptionText>Media</OptionText>
                         <MediaInput style={{ display:"none"}} type="file" id="file" accept=".png,.jpg,.jpeg" onChange={(e)=>setFile(e.target.files[0])}></MediaInput>
                     </MediaOption>
                     <Option>
-                        <LabelOutlined style={{color:"#957cbf"}}/>
+                        <LabelOutlined style={{color:"#38a0cc"}}/>
                         <OptionText>Tag</OptionText>
                     </Option>
                     <Option>
-                        <LocationOnOutlined style={{color:"#957cbf"}}/>
+                        <LocationOnOutlined style={{color:"#38a0cc"}}/>
                         <OptionText>Loc</OptionText>
                     </Option>
                     <Option>
-                        <EmojiEmotionsOutlined style={{color:"#957cbf"}}/>
+                        <EmojiEmotionsOutlined style={{color:"#38a0cc"}}/>
                         <OptionText>Feel</OptionText>
                     </Option>
                 </Options>

@@ -29,7 +29,7 @@ export default function Feed({username}) {
   );
   return (
     <Container>
-        <Share />
+        {username ? username === user.username && <Share /> : <Share />}
          {posts.map((p)=>(
           <Post key={p._id} post={p} />
         ))}

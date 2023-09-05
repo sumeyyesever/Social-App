@@ -85,7 +85,7 @@ export default function Comments({message}) {
   return (
     <Container>
         <Write>
-            <Image src="/assets/person/1.jpeg"></Image>
+            <Image src="/assets/person/1.jpg"></Image>
             <Input contentEditable placeholder="Write a Comment"></Input>
             <Button>Sent</Button>
         </Write>

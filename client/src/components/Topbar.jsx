@@ -9,7 +9,7 @@ import { useContext } from "react";
 const Container = styled.div`
    width: 100%;
   padding: 5px 0;
-  background-color:  #4d4dff;
+  background-color: #26a7de ;
   display: flex;
   align-items: center;
   justify-content: center;
